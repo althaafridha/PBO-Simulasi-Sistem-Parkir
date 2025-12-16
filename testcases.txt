@@ -1,0 +1,139 @@
+TEST CASE – Soal no. 3: Simulasi Sistem Manajemen Parkir Multilapis (Advanced Parking Management System)
+=============================================
+
+------------------------------------------------
+TestCase 01
+------------------------------------------------
+Kasus:
+Park motor => teralokasi RegularSlot, biaya dihitung saat unpark.
+
+Langkah Uji:
+1. Jalankan program
+2. Pilih menu 1 (Park Kendaraan)
+3. Pilih 1 (Motor)
+4. Masukkan plat nomor (contoh: B1234AA)
+5. Catat ticket yang diberikan
+6. Pilih menu 2 (Unpark Kendaraan)
+7. Masukkan ticket tersebut
+
+Expected Result:
+- Motor dialokasikan ke RegularSlot
+- Tidak ada biaya saat park
+- Biaya dihitung saat unpark
+- Tidak terjadi error
+
+Status:
+LULUS
+
+------------------------------------------------
+TestCase 02
+------------------------------------------------
+Kasus:
+Park EV yang meminta charging => dialokasikan ke EVSlot dan dikenakan charging fee saat unpark.
+
+Langkah Uji:
+1. Pilih menu 1 (Park Kendaraan)
+2. Pilih 3 (EV)
+3. Masukkan plat nomor (contoh: D9999EV)
+4. Pilih charging = 1
+5. Unpark menggunakan ticket
+
+Expected Result:
+- EV dialokasikan ke EVSlot
+- Charging fee ditambahkan pada total biaya
+- Tidak terjadi error
+
+Status:
+LULUS
+
+------------------------------------------------
+TC-03
+------------------------------------------------
+Kasus:
+Park Car VIP => jika reservasi VIP ada, dialokasikan ke VIPSlot dan dikenakan surcharge.
+
+Langkah Uji:
+1. Pilih menu 1 (Park Kendaraan)
+2. Pilih 2 (Car)
+3. Masukkan plat nomor (contoh: VIP001)
+4. Pilih VIP = 1
+5. Unpark kendaraan
+
+Expected Result:
+- Car VIP dialokasikan ke VIPSlot
+- Biaya parkir ditambah surcharge 50%
+- Tidak terjadi error
+
+Status:
+LULUS
+
+------------------------------------------------
+TestCase 04
+------------------------------------------------
+Kasus:
+Park kendaraan saat seluruh slot telah terpakai => NoAvailableSlotException.
+
+Langkah Uji:
+1. Park Motor
+2. Park EV
+3. Park Car VIP
+4. Coba park kendaraan keempat
+
+Expected Result:
+- Program melempar NoAvailableSlotException
+- Pesan error ditampilkan ke user
+
+Status:
+LULUS
+
+------------------------------------------------
+TestCase 05
+------------------------------------------------
+Kasus:
+Request reservasi VIP saat slot VIP sudah penuh => ReservationException.
+
+Langkah Uji:
+1. Park Car VIP hingga VIPSlot terisi
+2. Coba park Car VIP lain
+
+Expected Result:
+- Program melempar ReservationException
+- Pesan error ditampilkan
+
+Status:
+LULUS
+
+------------------------------------------------
+TestCase 06
+------------------------------------------------
+Kasus:
+Unpark dengan ticket tidak valid => InvalidTicketException.
+
+Langkah Uji:
+1. Pilih menu 2 (Unpark Kendaraan)
+2. Masukkan ticket yang tidak pernah dibuat (contoh: 999)
+
+Expected Result:
+- Program melempar InvalidTicketException
+- Pesan error ditampilkan
+
+Status:
+LULUS
+
+------------------------------------------------
+TestCase 07
+------------------------------------------------
+Kasus:
+Durasi parkir lebih dari 24 jam => diskon 10%.
+
+Langkah Uji:
+1. Park kendaraan
+2. Simulasikan durasi parkir > 24 jam (asumsi waktu sistem)
+3. Unpark kendaraan
+
+Expected Result:
+- Total biaya mendapatkan diskon 10%
+- Tidak terjadi error
+
+Status:
+LULUS
